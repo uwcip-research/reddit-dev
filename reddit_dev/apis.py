@@ -1,10 +1,11 @@
 # praw documentation: https://praw.readthedocs.io/en/stable/
 import praw
 import json
+import os
 
 
 def create_client():
-    # TODO change this code here
+    # TODO Create Secrets in your REPLIT (under Tools) and replace the strings with your new environemnt variables
     reddit = praw.Reddit(
         client_id="my client id",
         client_secret="my client secret",
@@ -55,7 +56,7 @@ def run_sample_submission():
     order = "new"
     limit = 10
     submissions = get_submissions(subreddit_name, order, limit)
-    file_name = "../dat/example_submissions.json"
+    file_name = os.path.join(os.getcwd(), "outputs/submissions.json")
     json2file(file_name, submissions)
 
 
@@ -64,7 +65,7 @@ def run_sample_comments():
     order = "confidence"
     limit = 50
     comments = get_toplevel_comments(submission_id, order, limit)
-    file_name = "../dat/example_comments.json"
+    file_name = os.path.join(os.getcwd(), "outputs/comments.json")
     json2file(file_name, comments)
 
 
